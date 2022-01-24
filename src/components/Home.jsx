@@ -7,7 +7,7 @@ import { useDebounce } from 'use-debounce'
 export default function Home() {
 
     const [searchTerm, setSearchTerm] = useState()
-    const [debouncedTerm] = useDebounce(searchTerm, 500)
+    const [debouncedSearchTerm] = useDebounce(searchTerm, 500)
     const [categories, setCategories] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('')
 
@@ -44,12 +44,13 @@ export default function Home() {
                         {categories && categories.map((c, i) => (
                             <option key={i} value={c} >{c}</option>
                         ))}
+                        <option value="">No category</option>
                     </Form.Select>
                 </Col>
             </Row>
             <Row>
                 <Col></Col>
-                <Col xs={8}><JobsList searchTerm={debouncedTerm} selectedCategory={selectedCategory} /></Col>
+                <Col xs={8}><JobsList searchTerm={debouncedSearchTerm} selectedCategory={selectedCategory} /></Col>
                 <Col></Col>
             </Row>
         </Container>

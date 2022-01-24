@@ -5,13 +5,12 @@ import SingleJob from './SingleJob'
 
 export default function JobsList({ searchTerm = 'developer', selectedCategory }) {
     const [jobs, setJobs] = useState([])
-    const category = selectedCategory
 
 
     const getJobs = async () => {
         try {
-            if (category) {
-                const response = await axios.get(`https://strive-jobs-api.herokuapp.com/jobs?category=${ category }&limit=10`)
+            if (selectedCategory) {
+                const response = await axios.get(`https://strive-jobs-api.herokuapp.com/jobs?category=${ selectedCategory }&limit=10`)
                 setJobs(response.data.data)
             } else {
                 const response = await axios.get(`https://strive-jobs-api.herokuapp.com/jobs?search=${ searchTerm }&limit=10`)
