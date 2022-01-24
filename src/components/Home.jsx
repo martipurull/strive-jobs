@@ -13,7 +13,6 @@ export default function Home() {
         try {
             const response = await axios.get('https://strive-jobs-api.herokuapp.com/jobs/categories')
             setCategories(response.data)
-            console.log(response.data);
         } catch (error) {
             console.log(error);
         }
