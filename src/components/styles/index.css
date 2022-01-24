@@ -1,0 +1,12 @@
+#mp-footer {
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+
+.job-title {
+    color: rgb(2, 99, 179);
+}
+
+.company-name {
+    font-weight: bold;
+}
