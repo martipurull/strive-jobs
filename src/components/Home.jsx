@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form, FormControl } from 'react-bootstrap'
 import JobsList from './home/JobsList'
 import axios from 'axios'
+import { useDebounce } from 'use-debounce'
 
 export default function Home() {
 
     const [searchTerm, setSearchTerm] = useState()
+    const [debouncedTerm] = useDebounce(searchTerm, 500)
     const [categories, setCategories] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('')
 
@@ -47,7 +49,7 @@ export default function Home() {
             </Row>
             <Row>
                 <Col></Col>
-                <Col xs={8}><JobsList searchTerm={searchTerm} selectedCategory={selectedCategory} /></Col>
+                <Col xs={8}><JobsList searchTerm={debouncedTerm} selectedCategory={selectedCategory} /></Col>
                 <Col></Col>
             </Row>
         </Container>
