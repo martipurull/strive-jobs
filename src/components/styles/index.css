@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;600;700&display=swap');
 
+@keyframes hoverTransition {
+  from {
+    color: #f2f4f3c0;
+  }
+  to {
+    color: #f2f4f3;
+  }
+}
+
 body {
   font-family: 'Titillium Web', sans-serif;
   background-color: #22333b;
@@ -49,14 +58,7 @@ a:hover {
   animation: hoverTransition .4s ease forwards;
 }
 
-@keyframes hoverTransition {
-  from {
-    color: #f2f4f3c0;
-  }
-  to {
-    color: #f2f4f3;
-  }
-}
+
 
 #mp-footer {
     justify-content: space-evenly;
