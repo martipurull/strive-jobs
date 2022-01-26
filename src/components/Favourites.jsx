@@ -20,6 +20,7 @@ function Favourites({ favouriteCompanies, removeFromFavouriteCompanies }) {
                             <StarFill className="ms-2 mt-1" size={26} onClick={() => removeFromFavouriteCompanies(fav)} />
                         </ListGroup.Item>
                     ))}
+                    {favouriteCompanies.length === 0 && <h4>You haven't chosen any favourite companies yet.</h4>}
                 </ListGroup>
             </div>
         </Container>

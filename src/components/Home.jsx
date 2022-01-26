@@ -7,7 +7,7 @@ import { useDebounce } from 'use-debounce'
 export default function Home() {
 
     const [searchTerm, setSearchTerm] = useState()
-    const [debouncedSearchTerm] = useDebounce(searchTerm, 500)
+    const [debouncedSearchTerm] = useDebounce(searchTerm, 200)
     const [categories, setCategories] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('')
 
