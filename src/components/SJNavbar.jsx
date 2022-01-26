@@ -14,7 +14,7 @@ export default function SJNavbar() {
                         <Link className='navbar-links' to='/'>Home</Link>
                     </div>
                     <div className="nav-link">
-                        <Link className='navbar-links' to='/companies'>Companies</Link>
+                        <Link className='navbar-links' to='/favourites'>Favourites</Link>
                     </div>
                     <div className="nav-link">
                         <Link className='navbar-links' to='categories'>Categories</Link>
