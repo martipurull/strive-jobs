@@ -2,7 +2,8 @@ import { createStore } from 'redux'
 import { mainReducer } from '../reducers'
 
 export const initialState = {
-    favouriteCompanies: []
+    favouriteCompanies: [],
+    user: ''
 }
 
 const configureStore = createStore(

@@ -1,4 +1,4 @@
-import { ADD_TO_FAVOURITE_COMPANIES, REMOVE_FROM_FAVOURITE_COMPANIES } from '../actions'
+import { ADD_TO_FAVOURITE_COMPANIES, REMOVE_FROM_FAVOURITE_COMPANIES, SET_USER } from '../actions'
 import { initialState } from '../store'
 
 export const mainReducer = (state = initialState, action) => {
@@ -13,6 +13,12 @@ export const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 favouriteCompanies: state.favouriteCompanies.filter(com => com !== action.payload)
+            }
+        }
+        case SET_USER: {
+            return {
+                ...state,
+                user: action.payload
             }
         }
         default: return state

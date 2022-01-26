@@ -1,8 +1,16 @@
-import React from 'react'
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Navbar, Container, Nav, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setUserAction } from '../redux/actions'
+import { Button } from 'react-bootstrap'
 
-export default function SJNavbar() {
+const mapStateToProps = (state) => ({ user: state.user })
+const mapDispatchToProps = (dispatch) => ({ setUser: (user) => dispatch(setUserAction(user)) })
+
+function SJNavbar({ user, setUser }) {
+    const [username, setUsername] = useState(user)
+
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
@@ -20,7 +28,25 @@ export default function SJNavbar() {
                         <Link className='navbar-links' to='categories'>Categories</Link>
                     </div>
                 </Nav>
+                <div className='d-flex'>
+                    {!user
+                        ? <Form.Control
+                            type="text"
+                            placeholder="Enter username"
+                            onChange={e => setUsername(e.target.value)}
+                            onKeyUp={e => {
+                                e.key === 'Enter' && setUser(username)
+                            }} />
+                        : <Button
+                            variant='danger'
+                            onClick={e => setUser('')}
+                        >logout</Button>
+
+                    }
+                </div>
             </Container>
         </Navbar>
     )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SJNavbar)
