@@ -10,15 +10,15 @@ export default function SJNavbar() {
                     <Link className="logo" to='/' >SJ</Link>
                 </Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link>
+                    <div className="nav-link">
                         <Link className='navbar-links' to='/'>Home</Link>
-                    </Nav.Link>
-                    <Nav.Link>
+                    </div>
+                    <div className="nav-link">
                         <Link className='navbar-links' to='/companies'>Companies</Link>
-                    </Nav.Link>
-                    <Nav.Link>
+                    </div>
+                    <div className="nav-link">
                         <Link className='navbar-links' to='categories'>Categories</Link>
-                    </Nav.Link>
+                    </div>
                 </Nav>
             </Container>
         </Navbar>
