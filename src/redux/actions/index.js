@@ -32,7 +32,6 @@ export const setJobsToDisplayAction = (selectedCategory, searchTerm) => {
                 }
             } else {
                 const response = await axios.get(`https://strive-jobs-api.herokuapp.com/jobs?search=${ searchTerm }&limit=10`)
-                console.log(response);
                 if (response.status === 200) {
                     dispatch({ type: SET_JOBS_TO_DISPLAY, payload: response.data.data })
                 } else {

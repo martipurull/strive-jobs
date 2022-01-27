@@ -16,22 +16,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 function JobsList({ searchTerm = 'developer', selectedCategory, jobs, errorCode, isLoading, getJobs }) {
-    // const [jobs, setJobs] = useState([])
-
-
-    // const getJobs = async () => {
-    //     try {
-    //         if (selectedCategory) {
-    //             const response = await axios.get(`https://strive-jobs-api.herokuapp.com/jobs?category=${ selectedCategory }&limit=10`)
-    //             setJobs(response.data.data)
-    //         } else {
-    //             const response = await axios.get(`https://strive-jobs-api.herokuapp.com/jobs?search=${ searchTerm }&limit=10`)
-    //             setJobs(response.data.data)
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
 
     useEffect(() => {
         getJobs(selectedCategory, searchTerm)
