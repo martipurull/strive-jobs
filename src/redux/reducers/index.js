@@ -37,14 +37,12 @@ export const jobsReducer = (state = initialState.jobs, action) => {
             return {
                 ...state,
                 jobsToDisplay: action.payload,
-                isLoading: false
             }
         }
         case SET_JOBS_TO_DISPLAY_ERROR: {
             return {
                 ...state,
                 errorCode: action.payload,
-                isLoading: false
             }
         }
         default: return state
