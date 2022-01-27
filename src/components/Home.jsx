@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useDebounce } from 'use-debounce'
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state) => ({ user: state.user })
+const mapStateToProps = (state) => ({ user: state.users.user })
 
 function Home({ user }) {
 

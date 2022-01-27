@@ -7,7 +7,7 @@ import { addToFavouriteCompaniesAction, removeFromFavouriteCompaniesAction } fro
 import { Star, StarFill } from 'react-bootstrap-icons'
 import { connect } from 'react-redux'
 
-const mapStateToProps = (state) => ({ favouriteCompanies: state.favouriteCompanies })
+const mapStateToProps = (state) => ({ favouriteCompanies: state.companies.favouriteCompanies })
 const mapDispatchToProps = (dispatch) => ({
     addToFavouriteCompanies: (company) => dispatch(addToFavouriteCompaniesAction(company)),
     removeFromFavouriteCompanies: (company) => dispatch(removeFromFavouriteCompaniesAction(company))

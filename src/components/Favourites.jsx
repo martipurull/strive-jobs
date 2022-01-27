@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { removeFromFavouriteCompaniesAction } from '../redux/actions'
 
-const mapStateToProps = (state) => ({ favouriteCompanies: state.favouriteCompanies })
+const mapStateToProps = (state) => ({ favouriteCompanies: state.companies.favouriteCompanies })
 const mapDispatchToProps = (dispatch) => ({ removeFromFavouriteCompanies: (company) => dispatch(removeFromFavouriteCompaniesAction(company)) })
 
 function Favourites({ favouriteCompanies, removeFromFavouriteCompanies }) {

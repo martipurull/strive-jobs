@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { setUserAction } from '../redux/actions'
 import { Button } from 'react-bootstrap'
 
-const mapStateToProps = (state) => ({ user: state.user })
+const mapStateToProps = (state) => ({ user: state.users.user })
 const mapDispatchToProps = (dispatch) => ({ setUser: (user) => dispatch(setUserAction(user)) })
 
 function SJNavbar({ user, setUser }) {

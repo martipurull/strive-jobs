@@ -1,7 +1,7 @@
-import { ADD_TO_FAVOURITE_COMPANIES, REMOVE_FROM_FAVOURITE_COMPANIES, SET_USER } from '../actions'
+import { ADD_TO_FAVOURITE_COMPANIES, REMOVE_FROM_FAVOURITE_COMPANIES, SET_JOBS_TO_DISPLAY, SET_JOBS_TO_DISPLAY_ERROR, SET_USER } from '../actions'
 import { initialState } from '../store'
 
-export const mainReducer = (state = initialState, action) => {
+export const favouritesReducer = (state = initialState.companies, action) => {
     switch (action.type) {
         case ADD_TO_FAVOURITE_COMPANIES: {
             return {
@@ -15,10 +15,36 @@ export const mainReducer = (state = initialState, action) => {
                 favouriteCompanies: state.favouriteCompanies.filter(com => com !== action.payload)
             }
         }
+        default: return state
+    }
+}
+
+export const userReducer = (state = initialState.users, action) => {
+    switch (action.type) {
         case SET_USER: {
             return {
                 ...state,
                 user: action.payload
+            }
+        }
+        default: return state
+    }
+}
+
+export const jobsReducer = (state = initialState.jobs, action) => {
+    switch (action.type) {
+        case SET_JOBS_TO_DISPLAY: {
+            return {
+                ...state,
+                jobsToDisplay: action.payload,
+                isLoading: false
+            }
+        }
+        case SET_JOBS_TO_DISPLAY_ERROR: {
+            return {
+                ...state,
+                errorCode: action.payload,
+                isLoading: false
             }
         }
         default: return state
