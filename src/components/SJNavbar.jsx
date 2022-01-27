@@ -37,10 +37,10 @@ function SJNavbar({ user, setUser }) {
                             onKeyUp={e => {
                                 e.key === 'Enter' && setUser(username)
                             }} />
-                        : <Button
+                        : <Link to='/'><Button
                             variant='danger'
                             onClick={e => setUser('')}
-                        >logout</Button>
+                        >logout</Button></Link>
 
                     }
                 </div>
