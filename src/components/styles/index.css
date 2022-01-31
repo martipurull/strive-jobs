@@ -76,3 +76,8 @@ a:hover {
 .company-title {
     color: #a9927d;
 }
+
+#home-spinner {
+  margin-top: 100px!important;
+  margin-left: 215px!important;
+}

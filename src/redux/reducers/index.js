@@ -1,4 +1,4 @@
-import { ADD_TO_FAVOURITE_COMPANIES, REMOVE_FROM_FAVOURITE_COMPANIES, SET_JOBS_TO_DISPLAY, SET_JOBS_TO_DISPLAY_ERROR, SET_USER } from '../actions'
+import { ADD_TO_FAVOURITE_COMPANIES, REMOVE_FROM_FAVOURITE_COMPANIES, SET_JOBS_TO_DISPLAY, SET_JOBS_TO_DISPLAY_ERROR, SET_LOADING, SET_USER } from '../actions'
 import { initialState } from '../store'
 
 export const favouritesReducer = (state = initialState.companies, action) => {
@@ -43,6 +43,12 @@ export const jobsReducer = (state = initialState.jobs, action) => {
             return {
                 ...state,
                 errorCode: action.payload,
+            }
+        }
+        case SET_LOADING: {
+            return {
+                ...state,
+                isLoading: action.payload
             }
         }
         default: return state

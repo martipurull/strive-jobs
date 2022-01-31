@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup, Spinner, Alert } from 'react-bootstrap'
 import SingleJob from './SingleJob'
 import { useSelector, useDispatch } from 'react-redux'
-import { setJobsToDisplayAction } from '../../redux/actions'
+import { setJobsToDisplayAction, setLoadingAction } from '../../redux/actions'
 
 function JobsList({ searchTerm = 'developer', selectedCategory }) {
     const jobs = useSelector(state => state.jobs.jobsToDisplay)
@@ -15,11 +15,16 @@ function JobsList({ searchTerm = 'developer', selectedCategory }) {
     }, [searchTerm, selectedCategory])
 
     return (
-        <ListGroup className="mt-4">
-            {jobs && jobs.map(job => (
-                <SingleJob key={job._id} job={job} />
-            ))}
-        </ListGroup>
+        <>
+            { isLoading && <Spinner id='home-spinner' animation="grow" variant='secondary' />}
+            {errorCode && <Alert variant='danger'>`There was an error when fetching jobs: {errorCode}`</Alert>}
+            { !isLoading &&
+                <ListGroup className="mt-4">
+                    {jobs && jobs.map(job => (
+                        <SingleJob key={job._id} job={job} />
+                    ))}
+                </ListGroup>}
+        </>
     )
 }
 

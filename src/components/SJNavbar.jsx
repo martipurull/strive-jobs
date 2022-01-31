@@ -23,9 +23,6 @@ function SJNavbar() {
                     <div className="nav-link">
                         <Link className='navbar-links' to='/favourites'>Favourites</Link>
                     </div>
-                    <div className="nav-link">
-                        <Link className='navbar-links' to='categories'>Categories</Link>
-                    </div>
                 </Nav>
                 <div className='d-flex'>
                     {!user

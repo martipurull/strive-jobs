@@ -4,6 +4,7 @@ export const REMOVE_FROM_FAVOURITE_COMPANIES = 'REMOVE_FROM_FAVOURITE_COMPANIES'
 export const SET_USER = 'SET_USER'
 export const SET_JOBS_TO_DISPLAY = 'SET_JOBS_TO_DISPLAY'
 export const SET_JOBS_TO_DISPLAY_ERROR = 'SET_JOBS_TO_DISPLAY_ERROR'
+export const SET_LOADING = 'SET_LOADING'
 
 export const addToFavouriteCompaniesAction = (company) => ({
     type: ADD_TO_FAVOURITE_COMPANIES,
@@ -20,9 +21,15 @@ export const setUserAction = (username) => ({
     payload: username
 })
 
+export const setLoadingAction = (boolean) => ({
+    type: SET_LOADING,
+    payload: boolean
+})
+
 export const setJobsToDisplayAction = (selectedCategory, searchTerm) => {
     return async (dispatch) => {
         try {
+            dispatch(setLoadingAction(true))
             if (selectedCategory) {
                 const response = await axios.get(`https://strive-jobs-api.herokuapp.com/jobs?category=${ selectedCategory }&limit=10`)
                 if (response.status === 200) {
@@ -40,6 +47,8 @@ export const setJobsToDisplayAction = (selectedCategory, searchTerm) => {
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            dispatch(setLoadingAction(false))
         }
     }
 }
