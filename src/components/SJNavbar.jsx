@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { Navbar, Container, Nav, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { setUserAction } from '../redux/actions'
 import { Button } from 'react-bootstrap'
 
-const mapStateToProps = (state) => ({ user: state.users.user })
-const mapDispatchToProps = (dispatch) => ({ setUser: (user) => dispatch(setUserAction(user)) })
-
-function SJNavbar({ user, setUser }) {
+function SJNavbar() {
+    const user = useSelector(state => state.users.user)
+    const dispatch = useDispatch()
     const [username, setUsername] = useState(user)
 
     return (
@@ -35,11 +34,11 @@ function SJNavbar({ user, setUser }) {
                             placeholder="Enter username"
                             onChange={e => setUsername(e.target.value)}
                             onKeyUp={e => {
-                                e.key === 'Enter' && setUser(username)
+                                e.key === 'Enter' && dispatch(setUserAction(username))
                             }} />
                         : <Link to='/'><Button
                             variant='danger'
-                            onClick={e => setUser('')}
+                            onClick={e => dispatch(setUserAction(''))}
                         >logout</Button></Link>
 
                     }
@@ -49,4 +48,4 @@ function SJNavbar({ user, setUser }) {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SJNavbar)
+export default SJNavbar

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { ListGroup, Container } from 'react-bootstrap'
-import { Star, StarFill } from 'react-bootstrap-icons'
-import { connect } from 'react-redux'
+import { StarFill } from 'react-bootstrap-icons'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { removeFromFavouriteCompaniesAction } from '../redux/actions'
 
-const mapStateToProps = (state) => ({ favouriteCompanies: state.companies.favouriteCompanies })
-const mapDispatchToProps = (dispatch) => ({ removeFromFavouriteCompanies: (company) => dispatch(removeFromFavouriteCompaniesAction(company)) })
+function Favourites() {
+    const favouriteCompanies = useSelector(state => state.companies.favouriteCompanies)
+    const dispatch = useDispatch()
 
-function Favourites({ favouriteCompanies, removeFromFavouriteCompanies }) {
     return (
         <Container>
             <div>
@@ -17,7 +17,7 @@ function Favourites({ favouriteCompanies, removeFromFavouriteCompanies }) {
                     {favouriteCompanies.length > 0 && favouriteCompanies.map((fav, i) => (
                         <ListGroup.Item key={i} className='d-flex'>
                             <Link to={`/${ fav }`}><h3>{fav}</h3></Link>
-                            <StarFill className="ms-2 mt-1" size={26} onClick={() => removeFromFavouriteCompanies(fav)} />
+                            <StarFill className="ms-2 mt-1" size={26} onClick={() => dispatch(removeFromFavouriteCompaniesAction(fav))} />
                         </ListGroup.Item>
                     ))}
                     {favouriteCompanies.length === 0 && <h4>You haven't chosen any favourite companies yet.</h4>}
@@ -27,4 +27,4 @@ function Favourites({ favouriteCompanies, removeFromFavouriteCompanies }) {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favourites)
+export default Favourites

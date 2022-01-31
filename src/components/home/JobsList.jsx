@@ -1,23 +1,17 @@
 import React, { useEffect } from 'react'
 import { ListGroup } from 'react-bootstrap'
 import SingleJob from './SingleJob'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { setJobsToDisplayAction } from '../../redux/actions'
 
-const mapStateToProps = state => ({
-    jobs: state.jobs.jobsToDisplay,
-    errorCode: state.jobs.errorCode,
-    isLoading: state.jobs.isLoading
-})
-
-const mapDispatchToProps = dispatch => ({
-    getJobs: (selectedCategory, searchTerm) => { dispatch(setJobsToDisplayAction(selectedCategory, searchTerm)) }
-})
-
-function JobsList({ searchTerm = 'developer', selectedCategory, jobs, errorCode, isLoading, getJobs }) {
+function JobsList({ searchTerm = 'developer', selectedCategory }) {
+    const jobs = useSelector(state => state.jobs.jobsToDisplay)
+    const errorCode = useSelector(state => state.jobs.errorCode)
+    const isLoading = useSelector(state => state.jobs.isLoading)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        getJobs(selectedCategory, searchTerm)
+        dispatch(setJobsToDisplayAction(selectedCategory, searchTerm))
     }, [searchTerm, selectedCategory])
 
     return (
@@ -29,4 +23,4 @@ function JobsList({ searchTerm = 'developer', selectedCategory, jobs, errorCode,
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobsList)
+export default JobsList

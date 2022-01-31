@@ -3,12 +3,11 @@ import { Container, Row, Col, Form, FormControl } from 'react-bootstrap'
 import JobsList from './home/JobsList'
 import axios from 'axios'
 import { useDebounce } from 'use-debounce'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-const mapStateToProps = (state) => ({ user: state.users.user })
+function Home() {
 
-function Home({ user }) {
-
+    const user = useSelector(state => state.users.user)
     const [searchTerm, setSearchTerm] = useState()
     const [debouncedSearchTerm] = useDebounce(searchTerm, 200)
     const [categories, setCategories] = useState([])
@@ -67,4 +66,4 @@ function Home({ user }) {
     )
 }
 
-export default connect(mapStateToProps)(Home)
+export default Home

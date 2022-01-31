@@ -5,26 +5,22 @@ import { ListGroup, Container } from 'react-bootstrap'
 import SingleJob from './home/SingleJob'
 import { addToFavouriteCompaniesAction, removeFromFavouriteCompaniesAction } from '../redux/actions'
 import { Star, StarFill } from 'react-bootstrap-icons'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-const mapStateToProps = (state) => ({ favouriteCompanies: state.companies.favouriteCompanies })
-const mapDispatchToProps = (dispatch) => ({
-    addToFavouriteCompanies: (company) => dispatch(addToFavouriteCompaniesAction(company)),
-    removeFromFavouriteCompanies: (company) => dispatch(removeFromFavouriteCompaniesAction(company))
-})
-
-function Company({ favouriteCompanies, addToFavouriteCompanies, removeFromFavouriteCompanies }) {
+function Company() {
+    const favouriteCompanies = useSelector(state => state.companies.favouriteCompanies)
+    const dispatch = useDispatch()
     const { company } = useParams()
     const [jobs, setJobs] = useState([])
     const [isFavourite, setIsFavourite] = useState(favouriteCompanies.includes(company))
 
     const handleAddFavourite = () => {
-        addToFavouriteCompanies(company)
+        dispatch(addToFavouriteCompaniesAction(company))
         setIsFavourite(true)
     }
 
     const handleRemoveFavourite = () => {
-        removeFromFavouriteCompanies(company)
+        dispatch(removeFromFavouriteCompaniesAction(company))
         setIsFavourite(false)
     }
 
@@ -57,4 +53,4 @@ function Company({ favouriteCompanies, addToFavouriteCompanies, removeFromFavour
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Company)
+export default Company
